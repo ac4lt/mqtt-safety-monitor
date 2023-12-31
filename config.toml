@@ -14,7 +14,7 @@ topic_cloud_cover = 'weather/cloudCover'
 topic_wind_speed_avg = 'weather/windspdkmh_avg10m'
 topic_event_rain = 'weather/eventrainmm'
 topic_probability_of_precipitation = 'forecast/probability_of_precipitation'
-topic_forecast_precipitation_mm = 'forecast/precipitation_mount_mm'
+topic_forecast_precipitation = 'forecast/precipitation_mount'
 topic_rain_in_region = 'weather/rain_in_region'
 limit_precipation_probability = 5
 

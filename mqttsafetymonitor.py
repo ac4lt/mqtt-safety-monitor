@@ -16,16 +16,13 @@ class MQTTSafetyMonitor:
     _lock = None
 
     # observing conditions values
-    _cloudCover = 0
-    _probabilityOfPrecipitation = 0
-    _forecastPrecipitation = 0
-    _rainInRegion = 0
-    _rainRate = 0
+    _cloudCover = 100
+    _probabilityOfPrecipitation = 100
+    _forecastPrecipitation = 999
+    _rainInRegion = True
+    _rainRate = 1
     _limit_precipation_probability = 5
-    _windSpeedAvg = 0
-
-    # average period (seconds)
-    _averageperiod = 0
+    _windSpeedAvg = 100
 
     # to calculate rain rate
     last_rain_reading = 0
@@ -46,19 +43,24 @@ class MQTTSafetyMonitor:
         # safety limit for probability of precipitation
         _limit_precipation_probability = Config.limit_precipation_probability
         # add callbacks
+        self.client.on_connect = on_connect
+        self.client.on_disconnect = on_disconnect
         self.client.message_callback_add(Config.topic_cloud_cover, on_message_cloud_cover)  
         self.client.message_callback_add(Config.topic_probability_of_precipitation, on_message_probability_of_precipitation)  
         self.client.message_callback_add(Config.topic_event_rain, on_message_event_rain)        
-        self.client.message_callback_add(Config.topic_forecast_precipitation_mm, on_message_forecast_precipitation_mm)     
+        self.client.message_callback_add(Config.topic_forecast_precipitation, on_message_forecast_precipitation_mm)     
         self.client.message_callback_add(Config.topic_rain_in_region, on_message_rain_in_region)   
         self.client.message_callback_add(Config.topic_wind_speed_avg, on_message_wind_speed_avg)
         # subscriptions
         self.client.subscribe(Config.topic_cloud_cover)
         self.client.subscribe(Config.topic_probability_of_precipitation)     
         self.client.subscribe(Config.topic_event_rain)   
-        self.client.subscribe(Config.topic_forecast_precipitation_mm)
+        self.client.subscribe(Config.topic_forecast_precipitation)
         self.client.subscribe(Config.topic_rain_in_region)
         self.client.subscribe(Config.topic_wind_speed_avg)
+        # publish that we are alive
+        self.client.publish("client/mqtt-safety-monitor", True, retain=True)
+        self.client.will_set("client/mqtt-safety-monitor", False, retain=True)
         # start handling subscriptions
         self.client.loop_start()
 
@@ -91,6 +93,12 @@ class MQTTSafetyMonitor:
         return res     
     
 # callbacks    
+def on_connect(client, userdata, flags, rc):
+    userdata.logger.info(f"[mqtt] connected rc = {rc}, flags={flags}")
+
+def on_disconnect(client, userdata, rc):
+    userdata.logger.info(f"[mqtt] disconnected, rc={rc}")
+
 def on_message_cloud_cover(client, userdata, msg):
     userdata._lock.acquire()
     userdata._cloudCover = float(msg.payload.decode('utf-8'))
@@ -131,5 +139,5 @@ def on_message_rain_in_region(client, userdata, msg):
 def on_message_wind_speed_avg(client, userdata, msg):
     userdata._lock.acquire()
     userdata._windSpeedAvg = float(msg.payload.decode('utf-8')) * (1000.0/3600.0)  # convert from km/h to m/s
-    userdata.logger.info(f"[wind speed] value {userdata._windSpeedAvg}")  
+    userdata.logger.info(f"[avg wind speed] value {userdata._windSpeedAvg}")  
     userdata._lock.release()    

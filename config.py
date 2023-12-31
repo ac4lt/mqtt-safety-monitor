@@ -94,7 +94,7 @@ class Config:
     topic_cloud_cover: str  = get_toml('device', 'topic_cloud_cover')
     topic_probability_of_precipitation: str = get_toml('device', 'topic_probability_of_precipitation')
     topic_event_rain: str = get_toml('device', 'topic_event_rain')
-    topic_forecast_precipitation_mm: str = get_toml('device', 'topic_forecast_precipitation_mm')
+    topic_forecast_precipitation: str = get_toml('device', 'topic_forecast_precipitation')
     topic_rain_in_region: str = get_toml('device', 'topic_rain_in_region')
     topic_wind_speed_avg: str = get_toml('device', "topic_wind_speed_avg")
     limit_precipation_probability: float = get_toml('device', 'limit_precipation_probability')

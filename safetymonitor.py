@@ -44,7 +44,7 @@ maxdev = 0                      # Single instance
 class SafetymonitorMetadata:
     """ Metadata describing the Safetymonitor Device. Edit for your device"""
     Name = 'MQTT Safetymonitor'
-    Version = '1.0.1'
+    Version = '1.0.2'
     Description = 'Bases safety decisions on both local conditions, nearby reported conditions and forecast data'
     DeviceType = 'Safetymonitor'
     DeviceID = '49efb5a1-74af-48b1-b548-8c19d440eda6' # https://guidgenerator.com/online-guid-generator.aspx
