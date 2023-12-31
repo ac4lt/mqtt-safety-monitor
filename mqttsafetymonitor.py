@@ -40,7 +40,7 @@ class MQTTSafetyMonitor:
         self._connected = False
         self._lock = Lock()
         # MQTT client
-        self.client = mqtt.Client("MQTTObservingConditions", userdata = self)
+        self.client = mqtt.Client("MQTTSafetyMonitor", userdata = self)
         self.client.username_pw_set(Config.mqtt_user, Config.mqtt_password)
         self.client.connect(Config.mqtt_server, Config.mqtt_port)
         # safety limit for probability of precipitation
