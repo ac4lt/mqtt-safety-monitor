@@ -1,0 +1,32 @@
+2023-12-31T16:38:55.389 INFO ==STARTUP== Serving on :5555. Time stamps are UTC.
+2023-12-31T16:39:00.000 INFO Disc rcv alpacadiscovery1 from ('10.1.10.10', 57728)
+2023-12-31T16:39:00.001 INFO Disc rcv alpacadiscovery1 from ('10.1.10.10', 57867)
+2023-12-31T16:39:00.004 INFO 10.1.10.10 <- [1]
+2023-12-31T16:39:00.006 INFO 10.1.10.10 <- {'ServerName': 'Alpaca MQTT Observing Conditions', 'Manufacturer': 'linda Thomas-Fowler', 'Version': '0.1', 'Location': 'Maurertown, Virginia, USA'}
+2023-12-31T16:39:00.009 INFO 10.1.10.10 <- [{'DeviceName': 'MQTT Safetymonitor', 'DeviceType': 'Safetymonitor', 'DeviceNumber': 0, 'UniqueID': '49efb5a1-74af-48b1-b548-8c19d440eda6'}]
+2023-12-31T16:39:00.408 INFO Disc rcv alpacadiscovery1 from ('10.1.10.10', 57728)
+2023-12-31T16:39:00.408 INFO Disc rcv alpacadiscovery1 from ('10.1.10.10', 57867)
+2023-12-31T16:39:03.848 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/issafe?ClientID=1&ClientTransactionID=11
+2023-12-31T16:39:03.849 INFO 10.1.10.10 <- True
+2023-12-31T16:39:03.853 INFO 10.1.10.10 -> PUT /api/v1/safetymonitor/0/connected
+2023-12-31T16:39:03.853 INFO 10.1.10.10 -> {'Connected': 'True', 'ClientID': '1', 'ClientTransactionID': '12'}
+2023-12-31T16:39:03.854 INFO [connected]
+2023-12-31T16:39:03.856 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/interfaceversion?ClientID=1&ClientTransactionID=13
+2023-12-31T16:39:03.856 INFO 10.1.10.10 <- 1
+2023-12-31T16:39:03.858 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/description?ClientID=1&ClientTransactionID=14
+2023-12-31T16:39:03.858 INFO 10.1.10.10 <- Bases safety decisions on both local conditions, nearby reported conditions and forecast data
+2023-12-31T16:39:03.860 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/driverinfo?ClientID=1&ClientTransactionID=15
+2023-12-31T16:39:03.861 INFO 10.1.10.10 <- MQTT Safety Monitor
+Implements ISafetymonitor
+Linda Thomas-Fowler
+2023-12-31T16:39:03.862 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/driverversion?ClientID=1&ClientTransactionID=16
+2023-12-31T16:39:03.862 INFO 10.1.10.10 <- 0.0.1
+2023-12-31T16:39:03.864 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/name?ClientID=1&ClientTransactionID=17
+2023-12-31T16:39:03.864 INFO 10.1.10.10 <- MQTT Safetymonitor
+2023-12-31T16:39:03.865 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/supportedactions?ClientID=1&ClientTransactionID=18
+2023-12-31T16:39:03.865 INFO 10.1.10.10 <- []
+2023-12-31T16:39:03.868 INFO 10.1.10.10 -> GET /api/v1/safetymonitor/0/issafe?ClientID=1&ClientTransactionID=19
+2023-12-31T16:39:03.868 INFO 10.1.10.10 <- True
+2023-12-31T16:39:03.870 INFO 10.1.10.10 -> PUT /api/v1/safetymonitor/0/connected
+2023-12-31T16:39:03.870 INFO 10.1.10.10 -> {'Connected': 'False', 'ClientID': '1', 'ClientTransactionID': '20'}
+2023-12-31T16:39:03.870 INFO [disconnected]
