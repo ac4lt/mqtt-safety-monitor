@@ -135,12 +135,12 @@ def on_message_forecast_precipitation_mm(client, userdata, msg):
 
 def on_message_rain_in_region(client, userdata, msg):
     userdata._lock.acquire()
-    userdata._rainInRegion = bool(msg.payload.decode('utf-8'))  
+    userdata._rainInRegion = str(msg.payload.decode('utf-8')) == "true" 
     userdata.logger.info(f"[rain in region] value {userdata._rainInRegion}")  
     userdata._lock.release()
 
 def on_message_wind_speed_avg(client, userdata, msg):
     userdata._lock.acquire()
     userdata._windSpeedAvg = float(msg.payload.decode('utf-8')) * (1000.0/3600.0)  # convert from km/h to m/s
-    userdata.logger.info(f"[avg p23thwind speed] value {userdata._windSpeedAvg}")  
+    userdata.logger.info(f"[avg wind speed] value {userdata._windSpeedAvg}")  
     userdata._lock.release()    
