@@ -90,8 +90,8 @@ class MQTTSafetyMonitor:
             self._forecastPrecipitation == 0 and \
             not self._rainInRegion and self._windSpeedAvg < 10
         self.logger.info(f"cloud cover: {self._cloudCover}, pop: {self._probabilityOfPrecipitation}, " +
-                         "rain rate: {self._rainRate}, forecast precip: {self._forecastPrecipitation}, " +
-                         "rain in region: {self._rainInRegion}")
+                         f"rain rate: {self._rainRate}, forecast precip: {self._forecastPrecipitation}, " +
+                         f"rain in region: {self._rainInRegion}")
         self._lock.release()
         return res     
     
