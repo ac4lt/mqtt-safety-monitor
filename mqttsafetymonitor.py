@@ -89,6 +89,9 @@ class MQTTSafetyMonitor:
             self._rainRate == 0 and \
             self._forecastPrecipitation == 0 and \
             not self._rainInRegion and self._windSpeedAvg < 10
+        self.logger.info(f"cloud cover: {self._cloudCover}, pop: {self._probabilityOfPrecipitation}, \
+                         rain rate: {self._rainRate}, forecast precip: {self._forecastPrecipitation}, \
+                         rain in region: {self._rainInRegion}")
         self._lock.release()
         return res     
     
@@ -139,5 +142,5 @@ def on_message_rain_in_region(client, userdata, msg):
 def on_message_wind_speed_avg(client, userdata, msg):
     userdata._lock.acquire()
     userdata._windSpeedAvg = float(msg.payload.decode('utf-8')) * (1000.0/3600.0)  # convert from km/h to m/s
-    userdata.logger.info(f"[avg wind speed] value {userdata._windSpeedAvg}")  
+    userdata.logger.info(f"[avg p23thwind speed] value {userdata._windSpeedAvg}")  
     userdata._lock.release()    
